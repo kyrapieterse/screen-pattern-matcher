@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare a continuous pattern with a repeat that starts again at each panel edge.">
+  <title>Multi-panel pattern matcher | Tint &amp; Screen</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <script defer src="patterns.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#controls">Skip to controls</a>
+  <header class="shell bar"><img src="tint-and-screen.svg" alt="Tint &amp; Screen" width="190" height="32"><a href="https://tintandscreen.co.za/architectural-screens/patterns/">Screen pattern library</a></header>
+  <main>
+    <div class="intro"><div class="shell"><h1>Multi-panel pattern matcher</h1><p>Compare a continuous pattern with a repeat that starts again at each panel edge.</p><a class="jump" href="#result">View result</a></div></div>
+    <noscript><p class="shell help">Enable JavaScript to use this offline tool.</p></noscript>
+    <div class="shell workspace">
+      <form id="controls" tabindex="-1" autocomplete="off" onsubmit="return false">
+        <h2>Pattern and panels</h2><p class="help">Choose a repeat tile, then change the panel width or offset to see how the design meets each seam.</p>
+        <div class="fields">
+          <label class="full">Tile pattern<select id="pattern"><option value="diamonds">Diamond lattice</option><option value="slots">Staggered slots</option><option value="waves">Curved ribbons</option></select></label>
+          <label class="full">Use your own SVG tile<input type="file" id="art" accept=".svg,image/svg+xml" ></label>
+          <label>Panels<input id="panels" type="number" value="3" min="1" max="16" step="1" required></label>
+          <label>Panel width (mm)<input id="width" type="number" value="650" min="50" max="5000" step="1" required></label>
+          <label>Panel height (mm)<input id="height" type="number" value="900" min="50" max="5000" step="1" required></label>
+          <label>Joint gap (mm)<input id="gap" type="number" value="30" min="0" max="500" step="1" required></label>
+          <label>Solid edge (mm)<input id="edge" type="number" value="25" min="0" max="500" step="1" required></label>
+          <label>Tile width (mm)<input id="repeat" type="number" value="240" min="20" max="3000" step="1" required></label>
+          <label>Horizontal offset (mm)<input id="offset" type="number" value="0" min="-5000" max="5000" step="1" required></label>
+        </div>
+        <div class="actions"><button type="button" id="export">Save comparison PNG</button></div>
+        <p class="message" id="message" role="status"></p>
+      </form>
+      <section class="result" id="result" tabindex="-1" aria-labelledby="result-title">
+        <h2 id="result-title">Seam comparison</h2>
+        <canvas id="view" width="900" height="430" aria-label="Two rows comparing continuous and restarted repeats"></canvas><p class="lead" id="summary" aria-live="polite"></p><p class="note">Top row: one pattern continues across the opening, including joints. Bottom row: each panel restarts from the same offset.</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
